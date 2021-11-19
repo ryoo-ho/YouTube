@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import styles from "./App.module.css";
+import SearchHeader from "./components/SearchHeader/SearchHeader";
 import VideoList from "./components/VideoList/VideoList";
 
 function App() {
@@ -20,7 +21,12 @@ function App() {
       .catch((error) => console.log("error", error));
   }, []);
 
-  return <VideoList videos={videos}></VideoList>;
+  return (
+    <div className={styles.app}>
+      <SearchHeader></SearchHeader>
+      <VideoList videos={videos}></VideoList>
+    </div>
+  );
 }
 
 export default App;
