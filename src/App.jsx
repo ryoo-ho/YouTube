@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 import VideoList from "./components/VideoList/VideoList";
-import Test from "./Test.jsx";
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -41,7 +40,6 @@ function App() {
     <div className={styles.app}>
       <SearchHeader onSearch={search}></SearchHeader>
       <VideoList videos={videos}></VideoList>
-      <Test></Test>
     </div>
   );
 }
