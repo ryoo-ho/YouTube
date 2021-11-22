@@ -3,7 +3,7 @@
   height: 4rem;
   padding: 0.8em 1em;
   background: #212121;
-  flex: 1;
+  width: 100%;
 }
 
 .logo {

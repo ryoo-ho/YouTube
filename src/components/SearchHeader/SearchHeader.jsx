@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./SearchHeader.module.css";
 
-function SearchHeader(props) {
+function SearchHeader({ onSearch }) {
+  const inputRef = useRef();
+
+  const handleSearch = () => {
+    const value = inputRef.current.value;
+    console.log(value);
+    onSearch(value);
+  };
+
+  const onClick = () => {
+    handleSearch();
+  };
+
+  const onKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -12,8 +30,10 @@ function SearchHeader(props) {
         className={styles.input}
         type="search"
         placeholder="search"
+        onKeyPress={onKeyPress}
+        ref={inputRef}
       ></input>
-      <button className={styles.button} type="sumbit">
+      <button className={styles.button} type="sumbit" onClick={onClick}>
         <img className={styles.button__img} src="/images/search.png"></img>
       </button>
     </header>
