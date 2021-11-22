@@ -5,11 +5,9 @@ import styles from "./VideoList.module.css";
 function VideoList(props) {
   return (
     <ul className={styles.videos}>
-      {props.videos
-        .filter((video) => !!video.id?.videoId)
-        .map((video, index) => (
-          <VideoItem key={video.id.videoId} video={video} />
-        ))}
+      {props.videos.map((video) => (
+        <VideoItem key={video.id} video={video} />
+      ))}
     </ul>
   );
 }

@@ -3,43 +3,24 @@ import styles from "./App.module.css";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 import VideoList from "./components/VideoList/VideoList";
 
-function App() {
+function App({ youtube }) {
   const [videos, setVideos] = useState([]);
-
   const search = (query) => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=AIzaSyDJGE2FAB3UDdRRwyNsnhVcmH2SzvA0RJY`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setVideos(result.items))
-      .catch((error) => console.log("error", error));
+    youtube
+      .search(query) //
+      .then((videos) => setVideos(videos));
   };
 
   useEffect(() => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=철구&key=AIzaSyDJGE2FAB3UDdRRwyNsnhVcmH2SzvA0RJY",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setVideos(result.items))
-      .catch((error) => console.log("error", error));
+    youtube
+      .mostPopular() //
+      .then((videos) => setVideos(videos));
   }, []);
 
   return (
     <div className={styles.app}>
-      <SearchHeader onSearch={search}></SearchHeader>
-      <VideoList videos={videos}></VideoList>
+      <SearchHeader onSearch={search} />
+      <VideoList videos={videos} />
     </div>
   );
 }
